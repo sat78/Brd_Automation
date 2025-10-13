@@ -503,7 +503,7 @@ def add_page_border(section):
     sectPr = section._sectPr
     sectPr.append(parse_xml(border_xml))
     
-header_image_path="C:\\Users\\Lenovo\\Desktop\\Brd_ag\\ess_logo.png"
+DEFAULT_HEADER_IMAGE_PATH = os.path.join("assets", "ess_logo.png")
 
 
 
@@ -520,13 +520,20 @@ def create_formatted_brd(brd_data: dict, output_path: str,header_image_path=head
     section.right_margin = Inches(0.8)
     add_page_border(section)
 
-    if header_image_path:
-        section = doc.sections[0]
+    if header_image_path and os.path.exists(header_image_path):
         header = section.header
         header_para = header.paragraphs[0] if header.paragraphs else header.add_paragraph()
         run = header_para.add_run()
-        run.add_picture(header_image_path, width=Inches(1.2))
-        header_para.alignment = WD_ALIGN_PARAGRAPH.LEFT
+        try:
+            run.add_picture(header_image_path, width=Inches(1.2))
+            header_para.alignment = WD_ALIGN_PARAGRAPH.LEFT
+        except Exception as e:
+            header_para.add_run().add_text(f"Error adding logo: {str(e)}")
+    else:
+        if header_image_path:
+            header = section.header
+            header_para = header.paragraphs[0] if header.paragraphs else header.add_paragraph()
+            header_para.add_run().add_text("Logo not found at specified path.")
     
     
 
@@ -1461,3 +1468,4 @@ st.markdown("""
 </div>
 
 """, unsafe_allow_html=True)
+
