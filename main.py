@@ -474,15 +474,16 @@ def mermaid_to_image(mermaid_code: str, output_img_path: str) -> Optional[str]:
     Renders Mermaid code to PNG using the Kroki API.
     """
     try:
-        url = "https://kroki.io/mermaid/png"
-        response = requests.post(url, data=mermaid_code.encode("utf-8"))
-        if response.status_code == 200:
-            with open(output_img_path, "wb") as f:
-                f.write(response.content)
-            return output_img_path
-        else:
-            st.warning(f"Kroki API error: {response.status_code}")
-            return None
+        mermaid = Mermaid(mermaid_code)
+        svg_data = mermaid.to_svg()  # Get SVG first (mermaid-py renders to SVG)
+        # Convert SVG to PNG using a simple approach (note: mermaid-py doesn't natively output PNG)
+        from cairosvg import svg2png  # Requires cairosvg; add to requirements.txt if needed
+        png_data = BytesIO()
+        svg2png(bytestring=svg_data.encode(), write_to=png_data)
+        png_data.seek(0)
+        with open(output_img_path, "wb") as f:
+            f.write(png_data.getvalue())
+        return output_img_path
     except Exception as e:
         st.warning(f"Mermaid rendering error: {e}")
         return None
@@ -1468,5 +1469,6 @@ st.markdown("""
 </div>
 
 """, unsafe_allow_html=True)
+
 
 
