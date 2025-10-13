@@ -473,7 +473,7 @@ Process Flow Steps:
 def mermaid_to_image(mermaid_code: str, output_img_path: str) -> Optional[str]:
     try:
         if not mermaid_code.strip().startswith(('graph TD', 'graph LR', 'graph TB')):
-            raise ValueError("Invalid Mermaid syntax; must start with 'graph TD', 'graph LR', or 'graph TB'")
+            '''raise ValueError("Invalid Mermaid syntax; must start with 'graph TD', 'graph LR', or 'graph TB'")'''
         mermaid = Mermaid(mermaid_code)
         svg_data = mermaid.to_svg()
         if not svg_data or not isinstance(svg_data, str):
@@ -1466,6 +1466,7 @@ st.markdown("""
 </div>
 
 """, unsafe_allow_html=True)
+
 
 
 
