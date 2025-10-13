@@ -509,7 +509,7 @@ DEFAULT_HEADER_IMAGE_PATH = os.path.join("assets", "ess_logo.png")
 
 
 # ---------------- BRD GENERATION ----------------
-def create_formatted_brd(brd_data: dict, output_path: str,header_image_path=header_image_path):
+def create_formatted_brd(brd_data: dict, output_path: str,header_image_path=DEFAULT_HEADER_IMAGE_PATH):
     doc = Document()
 
     section = doc.sections[0]
@@ -1468,4 +1468,5 @@ st.markdown("""
 </div>
 
 """, unsafe_allow_html=True)
+
 
