@@ -11,9 +11,10 @@ requests>=2.31.0
 huggingface-hub>=0.24.0
 opencv-python-headless>=4.8.0
 huggingface-hub>=0.24.0
-opmermaid-py==0.5.2
-cairosvg>=2.7.0
-Oenpyxl==3.1.2
+openpyxl==3.1.2
+mermaid-py==0.5.2
+
+
 
 
 
