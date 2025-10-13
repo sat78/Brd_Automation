@@ -7,6 +7,7 @@ import tempfile
 from pathlib import Path
 from typing import List, Dict, Optional
 from datetime import datetime
+from mermaid import Mermaid
 
 import streamlit as st
 import pandas as pd
@@ -487,6 +488,7 @@ def mermaid_to_image(mermaid_code: str, output_img_path: str) -> Optional[str]:
     except Exception as e:
         st.warning(f"Mermaid rendering error: {e}")
         return None
+        
 
 
 
@@ -1469,6 +1471,7 @@ st.markdown("""
 </div>
 
 """, unsafe_allow_html=True)
+
 
 
 
