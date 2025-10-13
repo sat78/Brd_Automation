@@ -479,13 +479,11 @@ def mermaid_to_image(mermaid_code: str, output_img_path: str) -> Optional[str]:
         # Validate Mermaid syntax
         if not mermaid_code.strip().startswith(('graph TD', 'graph LR', 'graph TB')):
             # Instead of raising ValueError, log internally and return None
-            st.warning("Unable to generate flowchart due to invalid syntax. Please try again with different steps.")  # Generic message
             return None
 
         mermaid = Mermaid(mermaid_code)
         svg_data = mermaid.to_svg()
         if not svg_data or not isinstance(svg_data, str):
-            st.warning("Unable to generate flowchart. Please try again.")  # Generic fallback
             return None
         
         png_data = BytesIO()
@@ -1478,6 +1476,7 @@ st.markdown("""
 </div>
 
 """, unsafe_allow_html=True)
+
 
 
 
