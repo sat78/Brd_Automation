@@ -1456,7 +1456,8 @@ with st.expander("🔧 Configuration & Troubleshooting"):
 st.markdown("---")
 st.markdown("""
 <div style='text-align: center; color: #666; padding: 20px;'>
-    <p><strong>BRD Automation Studio V1.0</strong> | Powered by Google Gemini AI</p>
+    <p><strong>BRD Automation Studio V1.0</strong> | Powered by Eastern Software Solution</p>
     <p>✨ NEW: Sample Template Mode & Video Analysis | Built with Streamlit</p>
 </div>
+
 """, unsafe_allow_html=True)
